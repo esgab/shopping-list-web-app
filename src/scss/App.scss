@@ -1,1 +1,84 @@
 @import 'core/reset';
+@import 'core/variables';
+@import 'core/functions';
+@import 'core/mixins';
+
+
+.container {
+  height: 100vh;
+  background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font;
+}
+
+.app {
+  width: 300px;
+  height: 90vh;
+  background-color: rgb(255, 252, 233);
+  border-radius: 10px;
+  padding: 10px 25px;
+
+  &__header {
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    height: 5vh;
+    &__copy {
+      font-size: 11px;
+    }
+  }
+}
+
+
+
+.main {
+  height: 80vh;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 20px;
+
+  &__item {
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    color: #1b200f;
+    background: #9be4a2;
+  }
+}
+
+.addProduct {
+
+  &__input {
+    width: 65%;
+    padding: 10px 20px;
+    margin-right: 10px;
+  }
+
+  &__button {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    background: #9be4a2;
+  }
+}
+
+
+

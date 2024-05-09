@@ -12,6 +12,7 @@
     "deploy": "rm -rf docs ; npm run build && mv dist docs && git add docs && git commit -m 'Update github Pages.' && git push"
   },
   "dependencies": {
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,7 +25,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "prop-types": "^15.8.1",
-    "sass": "^1.70.0",
+    "sass": "^1.77.0",
     "vite": "^5.0.8"
   }
 }
