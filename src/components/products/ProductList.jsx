@@ -1,14 +1,15 @@
 import ProductItem from './ProductItem';
 
-function ProductList() {
+function ProductList({products}) {
 
   return (
     <ul className="productList">
-      <ProductItem />
-      <ProductItem />
-      <ProductItem />
+      {products.map((product, index) => (
+        <ProductItem key={index} product={product} />
+      ))}
     </ul>
   );
 }
 
 export default ProductList;
+

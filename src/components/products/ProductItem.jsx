@@ -1,8 +1,8 @@
-function ProductItem() {
+function ProductItem({product}) {
 
   return (
-    <li className="productList__item">
-      <strong>Producto</strong>
+    <li className="productItem">
+      <strong>{product.name}</strong>
     </li>
   );
 
