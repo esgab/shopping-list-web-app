@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 function AddProductForm({ newProduct, setNewProduct, setShowModal }) {
 
   const handleInputChange = (event) => {
-    setNewProduct({ ...newProduct, name: event.currentTarget.value });
+    const value = event.currentTarget.value;
+    if (value.trim() !== "") {
+      setNewProduct({...newProduct, name: value });
+    }
   };
 
   const handleClick = () => {
-    if (newProduct.name.trim() !== "") {
+    if (newProduct.name) {
       setShowModal(true);
       console.log(newProduct);
     }
@@ -18,7 +21,7 @@ function AddProductForm({ newProduct, setNewProduct, setShowModal }) {
       <input
         className="addProduct__input"
         type="text"
-        placeholder="Product name"
+        placeholder="What do you want to buy?"
         value={newProduct.name}
         onChange={handleInputChange}
       />

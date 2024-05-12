@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 
-function CategoriesModal({categories, addProduct, newProduct, setShowModal}) {
-
+function CategoriesModal({ addProduct, newProduct, setNewProduct, setShowModal, categories }) {
+  
   const handleCategorySelect = (category) => {
-    const updatedProduct = { ...newProduct, category: category };
+    const updatedProduct = {...newProduct, category: category};
+    setNewProduct(updatedProduct);
     addProduct(updatedProduct);
     setShowModal(false);
-    console.log(updatedProduct); // Check the updated product with category
+    setNewProduct({name: "", category: ""});
   };
-
+  
   return (
     <div className="modal">
       <ul className="modal__categoryList">
@@ -21,11 +22,11 @@ function CategoriesModal({categories, addProduct, newProduct, setShowModal}) {
 }
 
 CategoriesModal.propTypes = {
-  categories: PropTypes.array.isRequired,
+  addProduct: PropTypes.func.isRequired,
   newProduct: PropTypes.object.isRequired,
   setNewProduct: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
-  addProduct: PropTypes.func.isRequired
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CategoriesModal;

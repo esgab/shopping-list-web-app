@@ -4,7 +4,7 @@ import '../scss/App.scss'
 
 import Header from './Header';
 import AddProductForm from './AddProductForm';
-import ProductList from './Products/ProductList';
+import ProductList from './products/ProductList';
 import CategoriesModal from './CategoriesModal';
 import Footer from './Footer';
 
@@ -13,19 +13,20 @@ function App() {
   const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [categories, setCategories] = useState(["Frutas", "Verduras", "Carnes", "Pescados", "Congelados", "Limpieza", "Bebidas"]);
+  const [categories, setCategories] = useState([
+    "Frutas", 
+    "Verduras", 
+    "Carnes", 
+    "Pescados", 
+    "Congelados", 
+    "Limpieza", 
+    "Bebidas"
+  ]);
 
-  const addProduct = (category) => {
+  const addProduct = (product) => {
+    setProducts([...products, product]);
+  };
   
-    const productToAdd = {
-      name: newProduct.name,
-      category: category
-    };
-  
-    setProducts([...products, productToAdd]);
-    setNewProduct({ name: "", category: "" });
-  }
-
   return (
     <div className="container">
       <div className="app">
@@ -50,7 +51,9 @@ function App() {
           : 
           <ProductList 
             products={products} 
+            categories={categories} 
           />} 
+          <button>Show by category</button>
         </main>
         <Footer />
       </div>

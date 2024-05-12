@@ -48,7 +48,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding-top: 20px;
 
   &__item {
     padding: 10px 20px;
@@ -77,6 +76,7 @@
     text-decoration: none;
     border-radius: 50%;
     background: #9be4a2;
+    cursor: pointer;
   }
 }
 
