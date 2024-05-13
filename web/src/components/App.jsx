@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../scss/App.scss'
 
 import Header from './Header';
+import MenuSlider from './menu/MenuSlider';
 import AddProductForm from './AddProductForm';
 import ProductList from './products/ProductList';
 import CategoriesModal from './CategoriesModal';
@@ -18,10 +19,16 @@ function App() {
     "Verduras", 
     "Carnes", 
     "Pescados", 
-    "Congelados", 
+    "Congelados",
     "Limpieza", 
     "Bebidas"
   ]);
+  const [open, setOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState(["Hola", "Adiós"]);
+
+  function toggle() {
+    setOpen(prevOpen => !prevOpen);
+  }
 
   const addProduct = (product) => {
     setProducts([...products, product]);
@@ -30,7 +37,8 @@ function App() {
   return (
     <div className="container">
       <div className="app">
-        <Header />
+        {open && <MenuSlider menuItems={menuItems} />}
+        <Header toggle={toggle} />
         <main className="app__main main">
           <AddProductForm 
             addProduct={addProduct} 
