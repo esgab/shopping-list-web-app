@@ -1,19 +1,39 @@
-// NPM modules
-const express = require("express");
-const cors = require("cors");
+// Libraries
+const express = require('express');
+const cors = require('cors');
 
-// create and config server
+require('dotenv').config();
+
+const getConnection = require('../config/connection.js');
+const { default: mongoose } = require('mongoose');
+
+// Create variables
 const server = express();
-server.use(cors());
-
-// init express aplication
 const port = 4000;
+
+// Mongo configuration
+getConnection();
+
+// Configuration
+server.use(cors());
+server.use(express.json({limit: '25mb'}));
+
+// Initialize Express application
 server.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 
-server.get("/api", async (req, res) => {
+// Define endpoints
+const Product  = require('../config/products.model.js');
+
+// Product list
+server.get('/api/products', async (req, res) => {
+
+  const results = await Product.find();
+
+  res.json(results);
+
 });
 
-// static server
-server.use(express.static("./public"));
+// Server static files
+server.use(express.static('../public'));
