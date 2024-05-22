@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import '../scss/App.scss'
 
@@ -14,17 +14,31 @@ function App() {
   const [products, setProducts] = useState([]);
   const [newProduct, setNewProduct] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [categories, setCategories] = useState([
-    "Frutas", 
-    "Verduras", 
-    "Carnes", 
-    "Pescados", 
-    "Congelados",
-    "Limpieza", 
-    "Bebidas"
-  ]);
+  const [categories, setCategories] = useState([]);
   const [open, setOpen] = useState(false);
-  const [menuItems, setMenuItems] = useState(["Hola", "Adiós"]);
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const handleFetchProductList = async () => {
+      const response = await fetch("//localhost:4000/api/products");
+      const data = await response.json();
+
+      setProducts(data);
+    };
+
+    handleFetchProductList();
+  }, []);
+
+  useEffect(() => {
+    const handleFetchCategoryList = async () => {
+      const response = await fetch("//localhost:4000/api/categories");
+      const data = await response.json();
+
+      setCategories(data);
+    };
+
+    handleFetchCategoryList();
+  }, []);
 
   function toggle() {
     setOpen(prevOpen => !prevOpen);

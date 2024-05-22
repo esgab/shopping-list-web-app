@@ -13,8 +13,8 @@ function CategoriesModal({ addProduct, newProduct, setNewProduct, setShowModal, 
   return (
     <div className="modal">
       <ul className="modal__categoryList">
-        {categories.map((category, index) => (
-          <li key={index} onClick={() => handleCategorySelect(category)}>{category}</li>
+        {categories.map((category) => (
+          <li key={category._id} onClick={() => handleCategorySelect(category.name)}>{category.name}</li>
         ))}
       </ul>
     </div>

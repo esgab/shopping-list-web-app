@@ -25,11 +25,21 @@ server.listen(port, () => {
 
 // Define endpoints
 const Product  = require('../config/products.model.js');
+const Category  = require('../config/categories.model.js');
 
 // Product list
 server.get('/api/products', async (req, res) => {
 
   const results = await Product.find();
+
+  res.json(results);
+
+});
+
+// Category list
+server.get('/api/categories', async (req, res) => {
+
+  const results = await Category.find();
 
   res.json(results);
 

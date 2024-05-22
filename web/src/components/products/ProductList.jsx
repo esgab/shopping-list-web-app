@@ -16,7 +16,7 @@ function ProductList({ products }) {
           <h2 className="category__title">{categoryTitle}</h2>
           <ul className="productList">
             {groupedByCategory[categoryTitle].map(product => (
-              <ProductItem key={product.name} product={product} />
+              <ProductItem key={product._id} product={product} />
             ))}
           </ul>
         </div>
