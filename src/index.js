@@ -23,26 +23,124 @@ server.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 
-// Define endpoints
+// ENDPOINTS
+
+// PRODUCTS
 const Product  = require('../config/products.model.js');
-const Category  = require('../config/categories.model.js');
 
 // Product list
 server.get('/api/products', async (req, res) => {
 
   const results = await Product.find();
-
   res.json(results);
-
 });
+
+// Create product
+server.post('/api/products', async (req, res) => {
+
+  console.log(req.body);
+
+  try {
+    const newProduct = new Product(req.body);
+    newProduct.save();
+    res.json({
+        success: true,
+        id: newProduct._id
+    });
+  }
+  catch( error ) {
+    console.log(error);
+    res.status(501).json({
+        success: false,
+        message: `Database error (${error})`
+    });
+  }
+});
+
+// Delete product
+server.delete('/api/products/:id', async (req, res) => {
+
+  try {
+    await Product.deleteOne( {_id: req.params.id} );
+    res.json({
+      success: true
+    });
+  }
+  catch( error ) {
+    console.log(error);
+    res.status(501).json({
+      success: false,
+      message: `Database error (${error})`
+    });
+  }
+});
+
+// CATEGORIES
+const Category  = require('../config/categories.model.js');
 
 // Category list
 server.get('/api/categories', async (req, res) => {
 
   const results = await Category.find();
-
   res.json(results);
+});
 
+// Create category
+server.post('/api/categories', async (req, res) => {
+
+  console.log(req.body);
+
+  try {
+    const newCategory = new Category(req.body);
+    newCategory.save();
+    res.json({
+      success: true,
+      id: newProduct._id
+    });
+  }
+  catch( error ) {
+    console.log(error);
+    res.status(501).json({
+        success: false,
+        message: `Database error (${error})`
+    });
+  }
+});
+
+// Update category
+server.put('/api/categories/:id', async (req, res) => {
+
+  try {
+    await Category.updateOne({_id: req.params.id }, req.body);
+    res.json({
+      success: true
+    });
+  }
+  catch( error ) {
+    console.log(error);
+    res.status(501).json({
+      success: false,
+      message: `Database error (${error})`
+    });
+  }
+});
+
+// Delete category
+server.delete('/api/categories/:id', async (req, res) => {
+
+  try {
+    await Category.deleteOne( {_id: req.params.id} );
+    res.json({
+      success: true
+    });
+  }
+  catch( error ) {
+    console.log(error);
+    res.status(501).json({
+      success: false,
+      message: `Database error (${error})`
+    });
+  }
 });
 
 // Server static files
