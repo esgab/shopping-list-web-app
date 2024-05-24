@@ -1,3 +1,1 @@
-# Proyecto plantilla
-
-¡Rellena este fichero!
+# Shopping List Web App
