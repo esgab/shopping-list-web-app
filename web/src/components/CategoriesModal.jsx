@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-function CategoriesModal({ addProduct, newProduct, setNewProduct, setShowModal, categories }) {
+function CategoriesModal({ newProduct, setNewProduct, setShowModal, categories, handleFetchCreate}) {
   
   const handleCategorySelect = (category) => {
     const updatedProduct = {...newProduct, category: category};
+    console.log("producto",updatedProduct)
     setNewProduct(updatedProduct);
-    addProduct(updatedProduct);
+    handleFetchCreate(updatedProduct);
     setShowModal(false);
     setNewProduct({name: "", category: ""});
   };
@@ -22,11 +23,11 @@ function CategoriesModal({ addProduct, newProduct, setNewProduct, setShowModal, 
 }
 
 CategoriesModal.propTypes = {
-  addProduct: PropTypes.func.isRequired,
+  handleFetchCreate: PropTypes.func.isRequired,
   newProduct: PropTypes.object.isRequired,
   setNewProduct: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default CategoriesModal;

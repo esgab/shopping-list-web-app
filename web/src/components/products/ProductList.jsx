@@ -1,37 +1,36 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ProductItem from './ProductItem';
+import ProductItem from "./ProductItem";
 
 function ProductList({ products }) {
-
-  const groupedByCategory = Object.groupBy(products, ({ category }) => category);
-  console.log(groupedByCategory);
+  
+  /*
+  const groupedByCategory = Object.groupBy(
+    productList,
+    ({ category }) => category
+  );
   const categoryTitles = Object.keys(groupedByCategory);
-  console.log(categoryTitles);
-
+*/
   return (
     <div className="products">
-      {categoryTitles.map(categoryTitle => (
-        <div className="products__category category" key={categoryTitle}>
-          <h2 className="category__title">{categoryTitle}</h2>
-          <ul className="productList">
-            {groupedByCategory[categoryTitle].map(product => (
-              <ProductItem key={product._id} product={product} />
-            ))}
-          </ul>
-        </div>
-      ))}
+      {
+        products.map((productCategory) => (
+          <div className="products__category category" key={productCategory}>
+            <h2 className="category__title">{productCategory.category}</h2>
+            <ul className="productList">
+              {productCategory.products.map((product, index) => (
+                <ProductItem key={index} product={product} />
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
   );
 }
 
 ProductList.propTypes = {
-  products: PropTypes.array.isRequired,
+  productList: PropTypes.array.isRequired,
 };
 
 export default ProductList;
-
-
-
-
-
